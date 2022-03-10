@@ -2,11 +2,16 @@ package br.edu.ifms.frame1.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.ifms.frame1.model.User;
 import br.edu.ifms.frame1.service.UserService;
@@ -29,5 +34,14 @@ public class UserController {
         List<User> users = this.userservice.getUsers();
          mv.addObject("usersList", users);
          return mv;
+    }
+    @PostMapping("/save")
+    public ModelAndView salvarUser(@Valid User u, BindingResult result, RedirectAttributes redirect) {
+       if (result.hasErrors()) {
+        return new ModelAndView("redirect:pageErro");
+       }
+       this.userservice.saveUser(user);
+
+        return new ModelAndView("redirect:/users/save");
     }
 }

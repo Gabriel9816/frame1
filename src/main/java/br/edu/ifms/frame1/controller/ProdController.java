@@ -29,5 +29,5 @@ public class ProdController {
          mv2.addObject("prodsList", prods);
          return mv2;
     }
+   
 }
-
