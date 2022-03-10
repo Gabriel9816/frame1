@@ -3,4 +3,4 @@
 #
 #
 
-![Snake animation](https://github.com/Gabriel9816/Gabriel9816/blob/output/github-contribution-grid-snake.svg)
+![snake gif](https://github.com/SEU_USUARIO/SEU_REPOSITORIO/blob/output/github-contribution-grid-snake.svg)
