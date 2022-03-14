@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Cadastro</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -12,17 +12,18 @@
 
 <div class="container">
   <center> <h2>Salvar Usuario</h2> </center>
-  <form class="form-horizontal" action="/us">
+  <form class="form-horizontal" action="/users/save" method="POST">
 
     <div class="form-group">
         <label for="usr">Nome:</label>
-        <input type="text" class="form-control" placeholder="Digite seu nome" id="usr">
+        <input type="text" class="form-control" placeholder="Digite seu nome" id="nome">
     </div>
 
     <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" class="form-control" id="email" placeholder="Digite seu email" name="email">
     </div>
+   
     <center>
         <div class="form-group">        
         <div>

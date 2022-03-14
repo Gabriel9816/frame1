@@ -25,5 +25,4 @@ public class User {
     @NotBlank
     String nome;
     String email;
-    
 }

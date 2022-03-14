@@ -35,13 +35,23 @@ public class UserController {
          mv.addObject("usersList", users);
          return mv;
     }
-    @PostMapping("/save")
-    public ModelAndView salvarUser(@Valid User u, BindingResult result, RedirectAttributes redirect) {
-       if (result.hasErrors()) {
-        return new ModelAndView("redirect:pageErro");
-       }
-       this.userservice.saveUser(user);
 
-        return new ModelAndView("redirect:/users/save");
-    }
+    // @GetMapping("/save")
+    // public ModelAndView getForm(){
+    //     ModelAndView mv2 = new ModelAndView("Formulario");
+    //     List<User> users = this.userservice.getUsers();
+    //      mv2.addObject("usersList", users);
+    //     return mv2;
+    // }
+
+    // @PostMapping("/save")
+    // public ModelAndView salvarUser(@Valid User user, BindingResult result, RedirectAttributes redirect){
+    //    if (result.hasErrors()) {
+    //      return new ModelAndView("redirect:pageErro");
+    //     }
+    //     this.userservice.saveUser(user);
+    //      return new ModelAndView("redirect:Formulario");
+    // }
+    
+
 }
