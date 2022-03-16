@@ -24,7 +24,7 @@ public class Prod {
     @Column(name = "nomeProd", nullable = false)
     @NotBlank
     String nome;
-    String descicao;
+    String descricao;
     Integer quantidade;
     Double valor;
     String fabricante;

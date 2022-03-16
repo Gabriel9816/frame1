@@ -29,27 +29,28 @@ public class ProdController {
     }
      @GetMapping("/")
      public ModelAndView listarTodosProds() {
-        ModelAndView mv2 = new ModelAndView("ListarTodosProds");   
+        ModelAndView mv = new ModelAndView("ListarTodosProds");   
         List<Prod> prods = this.prodsservice.getProds();
-         mv2.addObject("prodsList", prods);
-         return mv2;
+         mv.addObject("prodsList", prods);
+         return mv;
     }
+
     @GetMapping("/add")
 	public ModelAndView passParametersWithModelAndView() {
         ModelAndView mv = new ModelAndView("FormProd");
         return mv;
     }
 
-    @GetMapping("/Erro")
+    @GetMapping("/erro")
 	public ModelAndView Erro() {
         ModelAndView mv = new ModelAndView("pageErro");
         return mv;
     }
 
     @PostMapping("/save")
-    public ModelAndView salvarUser(@Valid Prod prod, BindingResult result, RedirectAttributes redirect){
+    public ModelAndView salvarProd(@Valid Prod prod, BindingResult result, RedirectAttributes redirect){
         if (result.hasErrors()) {
-          return new ModelAndView("redirect:/prods/Erro");
+          return new ModelAndView("redirect:/prods/erro");
          }
          this.prodsservice.saveProd(prod);
         return new ModelAndView("redirect:/prods/");

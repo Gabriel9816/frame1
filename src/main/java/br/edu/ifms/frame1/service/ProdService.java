@@ -15,7 +15,6 @@ public class ProdService {
 
 
     public List<Prod> getProds() {
-
         return this.prodRepository.findAll();
     }
     public void saveProd(Prod prod) {

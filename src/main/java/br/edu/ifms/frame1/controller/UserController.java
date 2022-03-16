@@ -23,7 +23,6 @@ public class UserController {
     
     @Autowired
     private UserService userservice;    
-
     @RequestMapping("/listar")
     public String getUser() {
         return "Usuario localizado";
@@ -42,7 +41,7 @@ public class UserController {
         return mv;
     }
 
-    @GetMapping("/Erro")
+    @GetMapping("/erro")
 	public ModelAndView Erro() {
         ModelAndView mv = new ModelAndView("pageErro");
         return mv;
@@ -51,7 +50,7 @@ public class UserController {
     @PostMapping("/save")
     public ModelAndView salvarUser(@Valid User user, BindingResult result, RedirectAttributes redirect){
         if (result.hasErrors()) {
-          return new ModelAndView("redirect:/users/Erro");
+          return new ModelAndView("redirect:/users/erro");
          }
          this.userservice.saveUser(user);
         return new ModelAndView("redirect:/users/");
