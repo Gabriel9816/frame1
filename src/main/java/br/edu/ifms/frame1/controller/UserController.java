@@ -42,10 +42,16 @@ public class UserController {
         return mv;
     }
 
+    @GetMapping("/Erro")
+	public ModelAndView Erro() {
+        ModelAndView mv = new ModelAndView("pageErro");
+        return mv;
+    }
+
     @PostMapping("/save")
     public ModelAndView salvarUser(@Valid User user, BindingResult result, RedirectAttributes redirect){
         if (result.hasErrors()) {
-          return new ModelAndView("redirect:pageErro");
+          return new ModelAndView("redirect:/users/Erro");
          }
          this.userservice.saveUser(user);
         return new ModelAndView("redirect:/users/");

@@ -40,10 +40,16 @@ public class ProdController {
         return mv;
     }
 
+    @GetMapping("/Erro")
+	public ModelAndView Erro() {
+        ModelAndView mv = new ModelAndView("pageErro");
+        return mv;
+    }
+
     @PostMapping("/save")
     public ModelAndView salvarUser(@Valid Prod prod, BindingResult result, RedirectAttributes redirect){
         if (result.hasErrors()) {
-          return new ModelAndView("redirect:pageErro");
+          return new ModelAndView("redirect:/prods/Erro");
          }
          this.prodsservice.saveProd(prod);
         return new ModelAndView("redirect:/prods/");

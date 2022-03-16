@@ -1,12 +1,24 @@
 <html xmlns:th="https://thymeleaf.org">  
     <table>  
         <tr>  
-            <td><h4>User Name: </h4></td>  
-            <td><h4 th:text="${user.nome}"></h4></td>  
+            <td><h4>Nome: </h4></td>  
+            <td><h4 th:text="${prod.nome}"></h4></td>  
         </tr>  
         <tr>  
-            <td><h4>Email ID: </h4></td>  
-            <td><h4 th:text="${user.email}"></h4></td>  
-        </tr>  
+            <td><h4>Descição: </h4></td>  
+            <td><h4 th:text="${prod.descricao}"></h4></td>  
+        </tr>
+        <tr>  
+            <td><h4>Quantidade: </h4></td>  
+            <td><h4 th:text="${prod.quantidade}"></h4></td>  
+        </tr>
+        <tr>  
+            <td><h4>Valor: </h4></td>  
+            <td><h4 th:text="${prod.valor}"></h4></td>  
+        </tr>
+        <tr>  
+            <td><h4>Fabricante: </h4></td>  
+            <td><h4 th:text="${prod.fabricante}"></h4></td>  
+        </tr>
     </table>  
 </html>  
