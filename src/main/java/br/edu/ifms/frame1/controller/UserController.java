@@ -28,30 +28,28 @@ public class UserController {
     public String getUser() {
         return "Usuario localizado";
     }
-     @GetMapping("/")
-     public ModelAndView listarTodos() {
-        ModelAndView mv = new ModelAndView("ListarTodos");   
-        List<User> users = this.userservice.getUsers();
-         mv.addObject("usersList", users);
-         return mv;
+    @GetMapping("/")
+    public ModelAndView listarTodos() {
+       ModelAndView mv = new ModelAndView("ListarTodos");   
+       List<User> users = this.userservice.getUsers();
+        mv.addObject("usersList", users);
+        return mv;
     }
 
-    // @GetMapping("/save")
-    // public ModelAndView getForm(){
-    //     ModelAndView mv2 = new ModelAndView("Formulario");
-    //     List<User> users = this.userservice.getUsers();
-    //      mv2.addObject("usersList", users);
-    //     return mv2;
-    // }
+    @GetMapping("/add")
+	public ModelAndView passParametersWithModelAndView() {
+        ModelAndView mv = new ModelAndView("Formulario");
+        return mv;
+    }
 
-    // @PostMapping("/save")
-    // public ModelAndView salvarUser(@Valid User user, BindingResult result, RedirectAttributes redirect){
-    //    if (result.hasErrors()) {
-    //      return new ModelAndView("redirect:pageErro");
-    //     }
-    //     this.userservice.saveUser(user);
-    //      return new ModelAndView("redirect:Formulario");
-    // }
-    
+    @PostMapping("/save")
+    public ModelAndView salvarUser(@Valid User user, BindingResult result, RedirectAttributes redirect){
+        if (result.hasErrors()) {
+          return new ModelAndView("redirect:pageErro");
+         }
+         this.userservice.saveUser(user);
+        return new ModelAndView("redirect:/users/");
+    }
+
 
 }

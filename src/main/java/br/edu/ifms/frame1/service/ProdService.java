@@ -18,4 +18,8 @@ public class ProdService {
 
         return this.prodRepository.findAll();
     }
+    public void saveProd(Prod prod) {
+        this.prodRepository.save(prod);
+    }
+
 }
