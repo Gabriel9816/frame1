@@ -67,6 +67,7 @@ ul.topnav li.right {float: right;}
                 <td th:text="${prod.quantidade}"></td>
                 <td th:text="${prod.valor}"></td>
                 <td th:text="${prod.fabricante}"></td>
+                <td><a th:href="@{/prods/delete/{id}(id=${prod.id})}"><button type="button" class="btn btn-outline-danger">Excluir</button></a></td>
             </tr>
         </tbody>
     </table>

@@ -1,6 +1,8 @@
 package br.edu.ifms.frame1.service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,4 +22,23 @@ public class UserService {
     public void saveUser(User user) {
         this.userRepository.save(user);
     }
+    public void delete(User user){
+        userRepository.delete(user);
+
+    }
+    public Optional<User> findById(UUID id){
+        return userRepository.findById(id);
+    }
+
+    public  User get(UUID userID){
+        Optional<User> user = this.userRepository.findById(userID);
+        if(user.isPresent())
+            return user.get();
+        return null;
+    }
+    
+    // public Optional<User> get(UUID userID){
+    //     return userRepository.findById(userID);
+    // }
+
 }

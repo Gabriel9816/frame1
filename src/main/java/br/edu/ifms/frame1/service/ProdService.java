@@ -1,6 +1,8 @@
 package br.edu.ifms.frame1.service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,13 @@ public class ProdService {
     }
     public void saveProd(Prod prod) {
         this.prodRepository.save(prod);
+    }
+    public void delete(Prod prod){
+        prodRepository.delete(prod);
+
+    }
+    public Optional<Prod> findById(UUID id){
+        return prodRepository.findById(id);
     }
 
 }
