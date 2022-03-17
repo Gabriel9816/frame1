@@ -70,8 +70,9 @@ public class UserController {
     }
     @GetMapping("/edit/{id}")
     public String editUser(@PathVariable("id") UUID id){
-        User user = userservice.get(id);
-        return "";
+        ModelAndView mv = new ModelAndView("users/edit");
+            mv.addObject("Formulario", user.getId());
+            return mv;
     }
   
 
