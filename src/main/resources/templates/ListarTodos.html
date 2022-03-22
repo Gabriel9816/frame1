@@ -59,7 +59,10 @@ ul.topnav li.right {float: right;}
                 <td th:text="${user.id}" ></td>
                 <td th:text="${user.nome}" ></td>
                 <td th:text="${user.email}"></td>
-                <td><a th:href="@{/users/delete/{id}(id=${user.id})}"><button type="button" class="btn btn-outline-danger">Excluir</button></a></td>
+                <td>
+                  <a th:href="@{/users/delete/{id}(id=${user.id})}"><button type="button" class="btn btn-outline-danger">Excluir</button></a>
+                  <a th:href="@{/users/edit/{id}(id=${user.id})}"><button type="button" class="btn btn-outline-info">Editar</button></a>
+                </td>
             </tr>
         </tbody>
     </table>

@@ -7,6 +7,7 @@ import java.util.UUID;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.ifms.frame1.model.User;
+import br.edu.ifms.frame1.model.UserNotFoundException;
 import br.edu.ifms.frame1.service.UserService;
 
 @RestController
@@ -68,11 +70,18 @@ public class UserController {
         userservice.delete(userop.get());
         return new ModelAndView("redirect:/users/");
     }
+    
     @GetMapping("/edit/{id}")
-    public String editUser(@PathVariable("id") UUID id){
-        ModelAndView mv = new ModelAndView("users/edit");
-            mv.addObject("Formulario", user.getId());
-            return mv;
+    public String editUser(@PathVariable("id") UUID userID, Model model, RedirectAttributes ra){
+        try{
+            User user = userservice.get(userID);
+            model.addAttribute("user", user);
+            model.addAttribute("Titulo da pagina", "Edit user" + user.getNome());
+            return "edituser";
+        } catch (UserNotFoundException e) {
+            ra.addFlashAttribute("message", "Usuario editado");
+            return "redirect:/users/erro";
+        }
     }
   
 

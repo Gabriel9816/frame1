@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">  
+<head>
+  <title>Editar Usuario</title>
+</head>
+<body>
+    <h1>Cadastrar Usuario</h1>
+    <br></br>
+    <div class="container">
+    <form class="form-horizontal" action="@{/edit}"  th:object="${user}" method="POST">
+        <div class="form-group">
+            <label for="usr">Nome:</label>
+            <input  type="text" class="form-control" th:field="*{nome}"  name="nome">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" th:field="*{email}"  name="email">
+        </div>
+        <center>
+            <div class="form-group">        
+            <div>
+            <br></br>
+                <button type="submit" class="btn btn-outline-dark" value="Update" >Salvar</button>
+            </div>
+            </div>
+        </center>
+    </form>
+    </div>
+</body>
+</html>  

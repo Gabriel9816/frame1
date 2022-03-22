@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifms.frame1.model.User;
+import br.edu.ifms.frame1.model.UserNotFoundException;
 import br.edu.ifms.frame1.repository.UserRepository;
 
 @Service
@@ -30,11 +31,12 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public  User get(UUID userID){
-        Optional<User> user = this.userRepository.findById(userID);
-        if(user.isPresent())
-            return user.get();
-        return null;
+    public  User get(UUID userID) throws UserNotFoundException{
+        Optional<User> resultado = this.userRepository.findById(userID);
+        if(resultado.isPresent()){
+            return resultado.get();
+        }
+        throw new UserNotFoundException("Não foi encontrado"+ userID);
     }
     
     // public Optional<User> get(UUID userID){
