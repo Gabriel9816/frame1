@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifms.frame1.model.Prod;
+import br.edu.ifms.frame1.model.ProdNotFoundException;
 import br.edu.ifms.frame1.repository.ProdRepository;
 
 @Service
@@ -29,5 +30,11 @@ public class ProdService {
     public Optional<Prod> findById(UUID id){
         return prodRepository.findById(id);
     }
-
+    public Prod get(UUID prodID) throws ProdNotFoundException{
+        Optional<Prod> resultado = this.prodRepository.findById(prodID);
+        if(resultado.isPresent()){
+            return resultado.get();
+        }
+        throw new ProdNotFoundException("Não foi encontrado"+ prodID);
+    }
 }

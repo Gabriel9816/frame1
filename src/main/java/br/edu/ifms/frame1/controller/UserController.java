@@ -85,23 +85,15 @@ public class UserController {
         }
     }
 
-    @PostMapping("/adduser")
-    public String addUser(@Valid User user, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "edituser";
-        }
-        
-        userservice.saveUser(user);
-        return "redirect:/users/";
-    }
-
     @PostMapping("/update/{id}")
-    public String updateUser(@PathVariable("id") UUID userID,@Valid User user, BindingResult result, Model model) {
+    public String updateUser(@PathVariable("id") UUID userID, @Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             user.setId(userID);
             return "edituser";
         }
-        userservice.saveUser(user);
+        
+        this.userservice.saveUser(user);
+
         return "redirect:/users/";
     }
 }

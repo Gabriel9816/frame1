@@ -7,19 +7,21 @@ import java.util.UUID;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.ifms.frame1.model.Prod;
+import br.edu.ifms.frame1.model.ProdNotFoundException;
 import br.edu.ifms.frame1.service.ProdService;
 
-@RestController
+@Controller
 @RequestMapping("/prods")
 
 public class ProdController {
@@ -67,5 +69,29 @@ public class ProdController {
         } 
         prodsservice.delete(proddel.get());
         return new ModelAndView("redirect:/prods/");
+  }
+  @GetMapping("/edit/{id}")
+  public String editProd(@PathVariable("id") UUID prodID, Model model, RedirectAttributes ra){
+      try{
+        Prod prod = prodsservice.get(prodID);
+          model.addAttribute("prod", prod);
+         model.addAttribute("Titulo da pagina", "Edit user" + prod.getNome());
+          return "editprod";
+      } catch (ProdNotFoundException e) {
+          ra.addFlashAttribute("message", "Usuario editado");
+          return "redirect:/prods/";
+      }
+  }
+
+  @PostMapping("/update/{id}")
+  public String updatePode(@PathVariable("id") UUID prodID, @Valid Prod prod, BindingResult result, Model model) {
+      if (result.hasErrors()) {
+             prod.setId(prodID);
+          return "editprod";
+      }
+      
+      this.prodsservice.saveProd(prod);
+
+      return "redirect:/prods/";
   }
 }
